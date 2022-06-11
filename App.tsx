@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { appType } from "./components/Interfaces"
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import HomeScreen from "./screens/HomeScreen"
+import LoginScreen from "./screens/LoginScreen"
+import RegistrationScreen from "./screens/RegistrationScreen"
+import RContinuationScreen from "./screens/RContinuationScreen"
+
+
+
+const { Navigator, Screen } = createNativeStackNavigator<appType>()
+
+// Construction de la navigation
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    <NavigationContainer>
+      <Navigator initialRouteName="HomeScreen">
+        <Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+        <Screen name="LoginScreen" component={LoginScreen} options={{ title: "Login", headerTitleAlign: "center" }} />
+        <Screen name="RegistrationScreen" component={RegistrationScreen} options={{ title: "Inscription", headerTitleAlign: "center" }} />
+        <Screen name="RContinuationScreen" component={RContinuationScreen} options={{ title: "Inscription", headerTitleAlign: "center" }} />
+      </Navigator>
+    </NavigationContainer>
+  )
+} 
